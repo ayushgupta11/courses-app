@@ -25,6 +25,6 @@ const getChapters = (item) => {
                 })
             })()
         }
-        else resolve({ ...item })
+        else resolve({ ...item._doc })
     })
 }
