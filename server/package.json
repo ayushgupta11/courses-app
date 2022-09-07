@@ -1,0 +1,54 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/bin/www",
+    "transpile": "babel ./src --out-dir dist-server",
+    "clean": "rimraf dist-server",
+    "server": "node ./dist-server/bin/www",
+    "build": "npm-run-all clean transpile",
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "dev": "NODE_ENV=development npm-run-all build server",
+    "watch:dev": "nodemon",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "src/*",
+      "public/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.2",
+    "express": "~4.16.1",
+    "mongoose": "^6.5.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.19",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.0.1"
+  }
+}
