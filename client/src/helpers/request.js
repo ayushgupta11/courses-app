@@ -21,8 +21,11 @@ export class Request {
         try {
             const response = await instance({
                 url,
-                method: 'GET',
-                responseType: 'blob'
+                method: 'POST',
+                responseType: 'blob',
+                data: {
+                    "name": fileName
+                }
             })
             const href = URL.createObjectURL(response.data);
 

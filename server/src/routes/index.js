@@ -9,6 +9,6 @@ const router = express.Router();
 router.get('/courses', getCourses);
 router.get('/subjects/:id', getSubjects);
 router.get('/topics/:id', getTopics);
-router.get('/download/:type/:name', downloadFile);
+router.post('/download', downloadFile);
 
 export default router;

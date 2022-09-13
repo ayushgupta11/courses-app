@@ -34,7 +34,7 @@ export const getTopics = async (id) => {
 
 export const downloadFile = async (type, name) => {
     try {
-        await Request.download(`${urls.DOWNLOAD_FILE}/${type}/${name}`, name);
+        await Request.download(`${urls.DOWNLOAD_FILE}`, name);
         return true;
     } catch (err) {
         throw err;
