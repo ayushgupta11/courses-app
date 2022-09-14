@@ -3,30 +3,31 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import { Breadcrumbs } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
-import Subjects from './Subjects';
+import { getCourses } from '../apis';
+import { useNavigate, Link } from 'react-router-dom';
 
-export default function Courses({
-    courses
-}) {
-    const [open, setOpen] = useState(false);
-    const [selectedCourse, setSelectedCourse] = useState(null);
-    const handleClose = () => {
-        setOpen(false);
-        setSelectedCourse(null);
-    }
-    const handleOpen = (id) => {
-        setOpen(true);
-        setSelectedCourse(id);
+export default function Courses() {
+    const [courses, setCourses] = useState([]);
+    const navigate = useNavigate();
+    useEffect(() => {
+        (async () => {
+            const data = await getCourses();
+            setCourses(data.courses);
+        })()
+    }, [])
+    const handleOpen = (name, id) => {
+        navigate(`/subjects/${name}/${id}`);
     }
     return (
-        <>
-            <Subjects open={open} handleClose={handleClose} selectedCourse={selectedCourse} />
-            <Box sx={{ bgcolor: '#cfe8fc', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ height: '100%' }}>
+            <h3 style={{ textAlign: 'center' }}>Home Page</h3>
+            <Box style={{ display: 'flex', height: '100%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20 }} sx={{ bgcolor: '#cfe8fc', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {
                     courses.map((course) => (
-                        <Card key={course._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleOpen(course._id)}>
+                        <Card key={course._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleOpen(course.name, course._id)}>
                             <CardHeader
                                 avatar={
                                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -34,7 +35,7 @@ export default function Courses({
                                     </Avatar>
                                 }
                                 title={course.name}
-                                subheader="September 14, 2016"
+                                subheader="Course"
                             />
                             <CardMedia
                                 component="img"
@@ -47,6 +48,6 @@ export default function Courses({
                     ))
                 }
             </Box>
-        </>
+        </div>
     )
 }
