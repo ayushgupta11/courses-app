@@ -19,6 +19,7 @@ try {
 }
 catch (err) {
     console.log('Mongoose connection error:', err);
+    throw err;
 }
 
 

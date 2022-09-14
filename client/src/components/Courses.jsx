@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Breadcrumbs } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
+import { List, ListItem, ListItemAvatar, ListItemText, Typography, Divider } from '@mui/material';
 import { getCourses } from '../apis';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ export default function Courses() {
         navigate(`/subjects/${name}/${id}`);
     }
     return (
-        <div style={{ height: '100%' }}>
+        <div>
             <h3 style={{ textAlign: 'center' }}>Home Page</h3>
             <Box style={{ display: 'flex', height: '100%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20 }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {

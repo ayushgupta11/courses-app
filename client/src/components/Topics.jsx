@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
 import { getTopics, downloadFile } from '../apis';
 import { useParams } from 'react-router-dom';
-import bgImage from '../bg.JPG';
+import { List, ListItem, ListItemAvatar, ListItemText, Avatar, Divider } from '@mui/material';
 
 export default function Subject() {
     const { id, subjectName } = useParams();
@@ -28,32 +22,30 @@ export default function Subject() {
         }
     }
     return (
-        <div style={{ height: '100%', backgroundImage: bgImage }}>
-            <h3 style={{ textAlign: 'center' }}>Subject: {subjectName}</h3>
-            <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20, background: bgImage }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30 }}>
+            <List sx={{ width: '80%', bgcolor: 'background.paper' }}>
                 {
-                    topics.map((topic) => (
-                        <Card key={topic._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleClick(topic)}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                    topics.map((topic, index) => (
+                        <>
+                            <ListItem alignItems="flex-start" key={topic._id} style={{ cursor: 'pointer' }} onClick={() => handleClick(topic.name, topic._id)}>
+                                <ListItemAvatar>
+                                    <Avatar aria-label="recipe">
                                         {topic.name[0]}
                                     </Avatar>
-                                }
-                                title={topic.name}
-                                subheader="Topic"
-                            />
-                            <CardMedia
-                                component="img"
-                                height="194"
-                                image={'https://www.vemschoolrsg.com/wp-content/uploads/2019/03/subject.jpg'}
-                                alt="Paella dish"
-                            />
-                        </Card>
-
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={topic.name}
+                                />
+                            </ListItem>
+                            {
+                                index !== topics.length - 1 ?
+                                    <Divider variant="inset" component="li" />
+                                    : null
+                            }
+                        </>
                     ))
                 }
-            </Box>
+            </List>
         </div>
     )
 }
