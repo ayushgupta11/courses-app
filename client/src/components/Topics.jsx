@@ -7,6 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import { red } from '@mui/material/colors';
 import { getTopics, downloadFile } from '../apis';
 import { useParams } from 'react-router-dom';
+import bgImage from '../bg.JPG';
 
 export default function Subject() {
     const { id, subjectName } = useParams();
@@ -27,9 +28,9 @@ export default function Subject() {
         }
     }
     return (
-        <div style={{ height: '100%', }}>
+        <div style={{ height: '100%', backgroundImage: bgImage }}>
             <h3 style={{ textAlign: 'center' }}>Subject: {subjectName}</h3>
-            <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20 }} sx={{ bgcolor: '#cfe8fc', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20, background: bgImage }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {
                     topics.map((topic) => (
                         <Card key={topic._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleClick(topic)}>

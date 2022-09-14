@@ -1,0 +1,11 @@
+.App{
+    background: url('./bg.JPG');
+    background-position: center;
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    height: 100vh;
+    overflow-y: hidden;
+}
+ h1, h3{
+    color: #fff !important;
+ }

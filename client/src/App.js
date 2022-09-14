@@ -9,7 +9,7 @@ function App() {
     <>
       <CssBaseline />
       <div className="App">
-        <Container maxWidth="xl" style={{ padding: 0, height: '100vh' }}>
+        <Container maxWidth="xl" style={{ padding: 0, height: '100%' }}>
           <Header />
           <Routes />
         </Container>

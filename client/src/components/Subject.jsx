@@ -24,7 +24,7 @@ export default function Subject() {
     return (
         <div style={{ height: '100%' }}>
             <h3 style={{ textAlign: 'center' }}>Course: {courseName}</h3>
-            <Box style={{ display: 'flex', flexWrap: 'wrap' }} sx={{ height: '100%', bgcolor: '#cfe8fc', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Box style={{ display: 'flex', flexWrap: 'wrap' }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {
                     subjects.map((subject) => (
                         <Card key={subject._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleOpen(subject.name, subject._id)}>

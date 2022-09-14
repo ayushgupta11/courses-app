@@ -24,7 +24,7 @@ export default function Courses() {
     return (
         <div style={{ height: '100%' }}>
             <h3 style={{ textAlign: 'center' }}>Home Page</h3>
-            <Box style={{ display: 'flex', height: '100%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20 }} sx={{ bgcolor: '#cfe8fc', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Box style={{ display: 'flex', height: '100%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20 }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {
                     courses.map((course) => (
                         <Card key={course._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleOpen(course.name, course._id)}>
