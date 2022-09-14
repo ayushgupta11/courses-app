@@ -32,6 +32,16 @@ export const getTopics = async (id) => {
     }
 }
 
+export const getFiles = async (id) => {
+    try {
+        const response = await Request.get(`${urls.GET_FILES}/${id}`);
+        return response.data;
+    }
+    catch (err) {
+        throw err;
+    }
+}
+
 export const downloadFile = async (type, name) => {
     try {
         await Request.download(`${urls.DOWNLOAD_FILE}`, name);

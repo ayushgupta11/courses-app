@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getTopics, downloadFile } from '../apis';
+import { getTopics } from '../apis';
 import { useParams } from 'react-router-dom';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar, Divider } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionSummary, Typography, AccordionDetails } from '@mui/material';
+import Files from './Files';
 
 export default function Subject() {
-    const { id, subjectName } = useParams();
+    const { id } = useParams();
     const [topics, setTopics] = useState([]);
     useEffect(() => {
         (async () => {
@@ -12,40 +14,25 @@ export default function Subject() {
             setTopics(data.topics);
         })()
     }, [])
-    const handleClick = async ({ type, fileName }) => {
-        try {
-            const response = await downloadFile(type, fileName);
-            console.log(response);
-        }
-        catch (err) {
-            console.log(err);
-        }
-    }
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30 }}>
-            <List sx={{ width: '80%', bgcolor: 'background.paper' }}>
-                {
-                    topics.map((topic, index) => (
-                        <>
-                            <ListItem alignItems="flex-start" key={topic._id} style={{ cursor: 'pointer' }} onClick={() => handleClick(topic.name, topic._id)}>
-                                <ListItemAvatar>
-                                    <Avatar aria-label="recipe">
-                                        {topic.name[0]}
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={topic.name}
-                                />
-                            </ListItem>
-                            {
-                                index !== topics.length - 1 ?
-                                    <Divider variant="inset" component="li" />
-                                    : null
-                            }
-                        </>
-                    ))
-                }
-            </List>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30, flexDirection: 'column', alignItems: 'center' }}>
+            {
+                topics.map((topic, index) => (
+                    <Accordion style={{ width: '90%' }}>
+                        <AccordionSummary
+                            style={{ height: 60 }}
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography>{topic.name}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Files topic={topic} />
+                        </AccordionDetails>
+                    </Accordion>
+                ))
+            }
         </div>
     )
 }
