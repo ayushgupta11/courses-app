@@ -28,7 +28,7 @@ export default function Courses() {
             <Box style={{ display: 'flex', height: '100%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', padding: 20 }} sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {
                     courses.map((course) => (
-                        <Card key={course._id} sx={{ maxWidth: 345 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleOpen(course.name, course._id)}>
+                        <Card key={course._id} sx={{ width: 400, height: 400 }} style={{ margin: 20, cursor: 'pointer' }} onClick={() => handleOpen(course.name, course._id)}>
                             <CardHeader
                                 avatar={
                                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -40,7 +40,7 @@ export default function Courses() {
                             />
                             <CardMedia
                                 component="img"
-                                height="194"
+                                height="300"
                                 image={course.image}
                                 alt="Paella dish"
                             />
